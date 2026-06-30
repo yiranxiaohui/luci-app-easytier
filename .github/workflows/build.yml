@@ -12,10 +12,6 @@ on:
         description: '请填写发布的说明'
         required: false
         default: ''
-      sdk:
-        description: 'OpenWrt SDK version. If empty, use tag; if tag is also empty, use 24.10.2.'
-        required: false
-        default: ''
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -34,7 +30,7 @@ jobs:
         arch:
           - x86_64
         sdk:
-          - ${{ github.event.inputs.sdk || github.event.inputs.tag || '24.10.2' }}
+          - ${{ github.event.inputs.tag || '24.10.2' }}
     steps:
       - uses: actions/checkout@v6
         with:
